@@ -16,12 +16,10 @@ class Currency: ObservableObject {
     
     @Published var symbol: Symbol
     @Published var value: Double
-    private var commission: CommissionRule?
-    
-    init(symbol: Symbol, value: Double, commission: CommissionRule? = nil) {
+  
+    init(symbol: Symbol, value: Double) {
         self.value = value
         self.symbol = symbol
-        self.commission = commission
     }
     
     func toString() -> String {

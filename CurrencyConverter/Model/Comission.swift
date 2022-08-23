@@ -57,17 +57,20 @@ class FreeAttemptsComission: FixedPriceComission {
 class ComissionCalculator {
     private var comissionRules: [Currency.Symbol: CommissionRule] = [:]
     
+    // MARK: Comission rules
+    
     init(comissionRules:  [Currency.Symbol: CommissionRule]) {
         self.comissionRules = comissionRules
     }
     
+    func addComissionRule(for symbol: Currency.Symbol, rule: CommissionRule) {
+        comissionRules[symbol] = rule
+    }
+    
+    // MARK: Comission handlers
     
     func commissionFee(currency: Currency) -> Double {
         comissionRules[currency.symbol]?.comissionFee(from: currency.value) ?? 0
-    }
-    
-    func addComissionRule(for symbol: Currency.Symbol, rule: CommissionRule) {
-        comissionRules[symbol] = rule
     }
     
     func applyComission(for currency: Currency, amount: Double) {
